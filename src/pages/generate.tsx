@@ -1,8 +1,10 @@
 import { type NextPage } from "next";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 import Head from "next/head";
 import { useState } from "react";
 import { FormGroup } from "~/component/FormGroup";
+import { Button } from "~/component/Button";
 import { Input } from "~/component/Input";
 import { api } from "~/utils/api";
 
@@ -14,6 +16,10 @@ const GeneratePage: NextPage = () => {
       console.log("mutation succes", data);
     },
   });
+
+  const session = useSession();
+
+  const isLoggedin = !!session.data;
 
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -31,6 +37,7 @@ const GeneratePage: NextPage = () => {
       }));
     };
   }
+
   return (
     <>
       <Head>
@@ -39,6 +46,26 @@ const GeneratePage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center">
+        {!isLoggedin && (
+          <Button
+            onClick={() => {
+              signIn().catch(console.error);
+            }}
+          >
+            Login
+          </Button>
+        )}
+        {isLoggedin && (
+          <Button
+            onClick={() => {
+              signOut().catch(console.error);
+            }}
+          >
+            Logout
+          </Button>
+        )}
+        {session.data?.user.name}
+
         <form
           className="gap gap flex flex-col gap-4"
           onSubmit={handleFormSubmit}
@@ -47,9 +74,9 @@ const GeneratePage: NextPage = () => {
             <label>Prompt</label>
             <Input value={form.prompt} onChange={updateForm("prompt")}></Input>
           </FormGroup>
-          <button className="rounded bg-blue-400 px-4 py-2 hover:bg-blue-500">
+          <Button className="rounded bg-blue-400 px-4 py-2 hover:bg-blue-500">
             Submit
-          </button>
+          </Button>
         </form>
       </main>
     </>
