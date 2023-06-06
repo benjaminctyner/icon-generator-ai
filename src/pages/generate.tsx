@@ -10,10 +10,15 @@ import { api } from "~/utils/api";
 
 const GeneratePage: NextPage = () => {
   const [form, setForm] = useState({ prompt: "" });
+  const [imageUrl, setImageUrl] = useState("");
 
   const generateIcon = api.generate.generateIcon.useMutation({
     onSuccess(data) {
-      console.log("mutation succes", data);
+      console.log("mutation succes", data.imageUrl);
+      if (!data.imageUrl) {
+        return;
+      }
+      setImageUrl(data.imageUrl);
     },
   });
 
@@ -78,6 +83,7 @@ const GeneratePage: NextPage = () => {
             Submit
           </Button>
         </form>
+        <img src={imageUrl} />
       </main>
     </>
   );

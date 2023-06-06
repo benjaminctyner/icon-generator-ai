@@ -6,6 +6,12 @@ import {
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 
+import { Configuration, OpenAIApi } from "openai";
+const configuration = new Configuration({
+  apiKey: process.env.DALLE_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
 export const generateRouter = createTRPCRouter({
   generateIcon: protectedProcedure
     .input(
@@ -41,8 +47,15 @@ export const generateRouter = createTRPCRouter({
         });
       }
 
+      const response = await openai.createImage({
+        prompt: input.prompt,
+        n: 1,
+        size: "1024x1024",
+      });
+      const image_url = response.data.data[0].url;
+
       return {
-        message: "success",
+        imageUrl: image_url,
       };
     }),
 });
