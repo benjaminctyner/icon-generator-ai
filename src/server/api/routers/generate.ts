@@ -53,6 +53,7 @@ export const generateRouter = createTRPCRouter({
         size: "1024x1024",
       });
       const image_url = response.data.data[0].url;
+      console.log(image_url);
 
       return {
         imageUrl: image_url,
