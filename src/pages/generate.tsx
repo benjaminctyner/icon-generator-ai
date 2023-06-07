@@ -7,6 +7,7 @@ import { FormGroup } from "~/component/FormGroup";
 import { Button } from "~/component/Button";
 import { Input } from "~/component/Input";
 import { api } from "~/utils/api";
+import Image from "next/image";
 
 const GeneratePage: NextPage = () => {
   const [form, setForm] = useState({ prompt: "" });
@@ -32,6 +33,7 @@ const GeneratePage: NextPage = () => {
     generateIcon.mutate({
       prompt: form.prompt,
     });
+    setForm({ prompt: "" });
   }
 
   function updateForm(key: string) {
@@ -83,7 +85,12 @@ const GeneratePage: NextPage = () => {
             Submit
           </Button>
         </form>
-        <img src={imageUrl} />
+        <Image
+          src={imageUrl}
+          alt="An image of your generated prompt."
+          width={"100"}
+          height={"100"}
+        />
       </main>
     </>
   );
