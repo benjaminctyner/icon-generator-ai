@@ -84,11 +84,16 @@ export const generateRouter = createTRPCRouter({
       // });
       const base64Data = await generateIcon(input.prompt);
       //TODO save the images to the s3 bucket
+
+      const icon = await ctx.prisma.icon.create({
+        data: { prompt: input.prompt, userId: ctx.session.user.id },
+      });
+
       await s3
         .putObject({
           Bucket: "ai-icon-generator-bct",
           Body: Buffer.from(b64Image!, "base64"),
-          Key: "myTestImage6.png", //todo gena  rand id
+          Key: icon.id,
           ContentEncoding: "base64",
           ContentType: "image/png",
         })
