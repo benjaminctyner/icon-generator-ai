@@ -9,6 +9,16 @@ import { env } from "~/env.mjs";
 
 import { Configuration, OpenAIApi } from "openai";
 import { COLLECTION_FORMATS } from "openai/dist/base";
+import { b64Image } from "~/data/b64Image";
+import AWS from "aws-sdk";
+
+const s3 = new AWS.S3({
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  },
+  region: "us-east-1",
+});
 
 const configuration = new Configuration({
   apiKey: process.env.DALLE_API_KEY,
@@ -17,14 +27,18 @@ const openai = new OpenAIApi(configuration);
 
 async function generateIcon(prompt: string): Promise<string | undefined> {
   if (process.env.MOCK_DALLE === "true") {
-    return "https://oaidalleapiprodscus.blob.core.windows.net/private/org-JvWEA5gghE8OTMvlPTV9voV5/user-FmKIrZcJ8sw98Hl64xVKIoUP/img-2RPUEAz4K8wMcvqNr5Xba2CB.png?st=2023-06-07T22%3A39%3A49Z&se=2023-06-08T00%3A39%3A49Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-06-07T22%3A23%3A40Z&ske=2023-06-08T22%3A23%3A40Z&sks=b&skv=2021-08-06&sig=ek6Dp8LMomTMPEUYYEEYW%2BL7wrQEADg21PhkU1O2w3A%3D";
+    return b64Image;
   } else {
     const response = await openai.createImage({
       prompt,
       n: 1,
-      size: "1024x1024",
+      size: "512x512",
+      response_format: "b64_json",
     });
-    return response.data.data[0].url;
+    console.log("----");
+    console.log(response.data.data[0]?.b64_json);
+    console.log("----");
+    return response.data.data[0]?.b64_json;
   }
 }
 
@@ -68,10 +82,20 @@ export const generateRouter = createTRPCRouter({
       //   n: 1,
       //   size: "1024x1024",
       // });
-      const image_url = await generateIcon(input.prompt);
+      const base64Data = await generateIcon(input.prompt);
+      //TODO save the images to the s3 bucket
+      await s3
+        .putObject({
+          Bucket: "ai-icon-generator-bct",
+          Body: Buffer.from(b64Image!, "base64"),
+          Key: "myTestImage6.png", //todo gena  rand id
+          ContentEncoding: "base64",
+          ContentType: "image/png",
+        })
+        .promise();
 
       return {
-        imageUrl: image_url,
+        imageUrl: base64Data,
       };
     }),
 });
