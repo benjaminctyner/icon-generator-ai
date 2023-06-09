@@ -8,10 +8,13 @@ import { Button } from "~/component/Button";
 import { Input } from "~/component/Input";
 import { api } from "~/utils/api";
 import Image from "next/image";
+import { useBuyCredits } from "~/hooks/useBuyCredits";
 
 const GeneratePage: NextPage = () => {
   const [form, setForm] = useState({ prompt: "" });
   const [imageUrl, setImageUrl] = useState("");
+
+  const { buyCredits } = useBuyCredits();
 
   const generateIcon = api.generate.generateIcon.useMutation({
     onSuccess(data) {
@@ -63,13 +66,22 @@ const GeneratePage: NextPage = () => {
           </Button>
         )}
         {isLoggedin && (
-          <Button
-            onClick={() => {
-              signOut().catch(console.error);
-            }}
-          >
-            Logout
-          </Button>
+          <>
+            <Button
+              onClick={() => {
+                buyCredits().catch(console.error);
+              }}
+            >
+              Buy Credits
+            </Button>
+            <Button
+              onClick={() => {
+                signOut().catch(console.error);
+              }}
+            >
+              Logout
+            </Button>
+          </>
         )}
         {session.data?.user.name}
 
