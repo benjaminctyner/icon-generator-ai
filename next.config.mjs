@@ -8,7 +8,10 @@ await import("./src/env.mjs");
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ["oaidalleapiprodscus.blob.core.windows.net"],
+    domains: [
+      "oaidalleapiprodscus.blob.core.windows.net",
+      "ai-icon-generator-bct.s3.amazonaws.com",
+    ],
   },
 
   /**

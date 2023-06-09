@@ -12,6 +12,8 @@ import { COLLECTION_FORMATS } from "openai/dist/base";
 import { b64Image } from "~/data/b64Image";
 import AWS from "aws-sdk";
 
+const BUCKET_NAME = "ai-icon-generator-bct";
+
 const s3 = new AWS.S3({
   credentials: {
     accessKeyId: process.env.ACCESS_KEY_ID,
@@ -35,9 +37,10 @@ async function generateIcon(prompt: string): Promise<string | undefined> {
       size: "512x512",
       response_format: "b64_json",
     });
-    console.log("----");
-    console.log(response.data.data[0]?.b64_json);
-    console.log("----");
+    // console.log("----");
+    // console.log(response.data.data[0]?.b64_json);
+    // console.log("----");
+
     return response.data.data[0]?.b64_json;
   }
 }
@@ -91,8 +94,8 @@ export const generateRouter = createTRPCRouter({
 
       await s3
         .putObject({
-          Bucket: "ai-icon-generator-bct",
-          Body: Buffer.from(b64Image!, "base64"),
+          Bucket: BUCKET_NAME,
+          Body: Buffer.from(base64Data!, "base64"),
           Key: icon.id,
           ContentEncoding: "base64",
           ContentType: "image/png",
@@ -100,7 +103,7 @@ export const generateRouter = createTRPCRouter({
         .promise();
 
       return {
-        imageUrl: base64Data,
+        imageUrl: `https://${BUCKET_NAME}.s3.amazonaws.com/${icon.id}`,
       };
     }),
 });
