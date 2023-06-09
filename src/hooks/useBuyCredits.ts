@@ -7,7 +7,7 @@ export function useBuyCredits() {
   const checkout = api.checkout.createCheckout.useMutation();
 
   return {
-    buyCredits: async (params: type) => {
+    buyCredits: async () => {
       const response = await checkout.mutateAsync();
       const stripe = await stripePromise;
       await stripe?.redirectToCheckout({

@@ -20,8 +20,8 @@ export const checkoutRouter = createTRPCRouter({
       payment_method_types: ["card", "us_bank_account"],
       line_items: [{ price: `${process.env.PRICE_ID}`, quantity: 1 }],
       mode: "payment",
-      success_url: `${process.env.HOST_NAME}/success`,
-      cancel_url: `${process.env.HOST_NAME}/cancel`,
+      success_url: `${process.env.HOST_NAME}`,
+      cancel_url: `${process.env.HOST_NAME}`,
     });
   }),
 });
