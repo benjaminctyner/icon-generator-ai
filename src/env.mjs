@@ -31,6 +31,7 @@ export const env = createEnv({
     STRIPE_SECRET_KEY: z.string(),
     HOST_NAME: z.string(),
     PRICE_ID: z.string(),
+    STRIPE_WEB_HOOK_SECRET: z.string(),
   },
 
   /**
@@ -61,6 +62,7 @@ export const env = createEnv({
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     HOST_NAME: process.env.HOST_NAME,
     PRICE_ID: process.env.PRICE_ID,
+    STRIPE_WEB_HOOK_SECRET: process.env.STRIPE_WEB_HOOK_SECRET,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
