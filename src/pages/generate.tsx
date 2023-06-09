@@ -56,34 +56,7 @@ const GeneratePage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center">
-        {!isLoggedin && (
-          <Button
-            onClick={() => {
-              signIn().catch(console.error);
-            }}
-          >
-            Login
-          </Button>
-        )}
-        {isLoggedin && (
-          <>
-            <Button
-              onClick={() => {
-                buyCredits().catch(console.error);
-              }}
-            >
-              Buy Credits
-            </Button>
-            <Button
-              onClick={() => {
-                signOut().catch(console.error);
-              }}
-            >
-              Logout
-            </Button>
-          </>
-        )}
-        {session.data?.user.name}
+        {isLoggedin && <></>}
 
         <form
           className="gap gap flex flex-col gap-4"
