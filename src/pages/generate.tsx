@@ -22,12 +22,7 @@ const colors = [
 
 const shapes = ["square", "circle", "rounded"];
 
-const styles = [
-  "claymorphic",
-  "3d rendered",
-  "pixelated",
-  "illustrated with color pencil",
-];
+const styles = ["claymorphic", "3d rendered", "pixelated", "illustrated"];
 
 const GeneratePage: NextPage = () => {
   const [form, setForm] = useState({
@@ -127,7 +122,7 @@ const GeneratePage: NextPage = () => {
           <h2 className="text-xl">4. Pick your icon style.</h2>
           <FormGroup className="mb-12 grid grid-cols-4">
             {styles.map((style) => (
-              <label key={style} className="flex gap-2 text-2xl">
+              <label key={style} className="flex items-center gap-2 text-2xl">
                 <input
                   required
                   type="radio"
@@ -140,7 +135,7 @@ const GeneratePage: NextPage = () => {
             ))}
           </FormGroup>
 
-          <h2 className="text-xl">5. How many do you want? - Max 10.</h2>
+          <h2 className="text-xl">5. How many would you like? (Max 10)</h2>
           <FormGroup className="mb-12">
             <label>Number of icons</label>
             <Input
