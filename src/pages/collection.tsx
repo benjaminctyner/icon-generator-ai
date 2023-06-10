@@ -27,7 +27,7 @@ const CollectionPage: NextPage = () => {
                 width="100"
                 height="100"
                 alt={icon.prompt ?? "an image of an icon"}
-                src={`https://icon-generator-course.s3.amazonaws.com/${icon.id}`}
+                src={`https://ai-icon-generator-bct.s3.amazonaws.com/${icon.id}`}
               />
             </li>
           ))}
