@@ -3,7 +3,7 @@ import { buffer } from "micro";
 import Stripe from "stripe";
 import { prisma } from "~/server/db";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "error", {
   apiVersion: "2022-11-15",
 });
 
@@ -51,7 +51,7 @@ const webhook = async (req: NextApiRequest, res: NextApiResponse) => {
       event = stripe.webhooks.constructEvent(
         buf,
         sig,
-        process.env.STRIPE_WEB_HOOK_SECRET
+        process.env.STRIPE_WEB_HOOK_SECRET ?? "error"
       );
     } catch (err) {
       console.log("an error occured");

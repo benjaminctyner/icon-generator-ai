@@ -16,14 +16,14 @@ const BUCKET_NAME = "ai-icon-generator-bct";
 
 const s3 = new AWS.S3({
   credentials: {
-    accessKeyId: process.env.ACCESS_KEY_ID,
-    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+    accessKeyId: process.env.ACCESS_KEY_ID ?? "error",
+    secretAccessKey: process.env.SECRET_ACCESS_KEY ?? "error",
   },
   region: "us-east-1",
 });
 
 const configuration = new Configuration({
-  apiKey: process.env.DALLE_API_KEY,
+  apiKey: process.env.DALLE_API_KEY ?? "error",
 });
 const openai = new OpenAIApi(configuration);
 
