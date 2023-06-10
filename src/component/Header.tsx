@@ -17,6 +17,13 @@ export function Header() {
         <li>
           <PrimaryLink href="/generate">Generate</PrimaryLink>
         </li>
+        {isLoggedin && (
+          <li>
+            <PrimaryLink className="flex gap-4" href="/collection">
+              Collection
+            </PrimaryLink>
+          </li>
+        )}
       </ul>
       <ul className="flex gap-4">
         {isLoggedin ? (
