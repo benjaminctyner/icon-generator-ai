@@ -10,19 +10,19 @@ export const iconsRouter = createTRPCRouter({
       where: {
         userId: ctx.session.user.id,
       },
-      //   orderBy: {
-      //     createdAt: "desc",
-      //   },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     return icons;
   }),
-  //   getCommunityIcons: publicProcedure.query(async ({ ctx }) => {
-  //     const icons = await ctx.prisma.icon.findMany({
-  //       take: 50,
-  //       //   orderBy: {
-  //       //     createdAt: "desc",
-  //       //   },
-  //     });
-  //     return icons;
-  //   }),
+  getCommunityIcons: publicProcedure.query(async ({ ctx }) => {
+    const icons = await ctx.prisma.icon.findMany({
+      take: 50,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return icons;
+  }),
 });
