@@ -12,7 +12,7 @@ import { api } from "~/utils/api";
 const colors = [
   "Blue",
   "Red",
-  "Pink",
+  "Purple",
   "Green",
   "Orange",
   "Yellow",
