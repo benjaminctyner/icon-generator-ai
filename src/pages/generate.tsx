@@ -69,7 +69,7 @@ const GeneratePage: NextPage = () => {
         <meta name="Generate" content="Generate Icons With AI" />
         <link rel="icon" href="/icon-logo.png" />
       </Head>
-      <main className="container mx-auto mt-24 flex min-h-screen flex-col gap-4 px-8">
+      <main className="container mx-auto mt-24 flex min-h-screen flex-col gap-4 px-8 sm:grid-cols-1">
         <h1 className="text-6xl">Generate your icons</h1>
         <p className="mb-12 text-2xl">
           Fill out the form below to start generating your icons.
@@ -88,7 +88,7 @@ const GeneratePage: NextPage = () => {
           </FormGroup>
 
           <h2 className="text-xl">2. Pick your icon color.</h2>
-          <FormGroup className="mb-12 grid grid-cols-4">
+          <FormGroup className="mb-12 grid min-[300px]:grid-cols-1 md:grid-cols-4 ">
             {colors.map((color) => (
               <label key={color} className="flex gap-2 text-2xl">
                 <input
@@ -104,7 +104,7 @@ const GeneratePage: NextPage = () => {
           </FormGroup>
 
           <h2 className="text-xl">3. Pick your icon shape.</h2>
-          <FormGroup className="mb-12 grid grid-cols-4">
+          <FormGroup className="mb-12 grid grid-cols-4 min-[300px]:grid-cols-1 md:grid-cols-4">
             {shapes.map((shape) => (
               <label key={shape} className="flex gap-2 text-2xl">
                 <input
@@ -120,7 +120,7 @@ const GeneratePage: NextPage = () => {
           </FormGroup>
 
           <h2 className="text-xl">4. Pick your icon style.</h2>
-          <FormGroup className="mb-12 grid grid-cols-4">
+          <FormGroup className="mb-12 grid grid-cols-4 min-[300px]:grid-cols-1 md:grid-cols-4">
             {styles.map((style) => (
               <label key={style} className="flex items-center gap-2 text-2xl">
                 <input
