@@ -11,7 +11,7 @@ function HeroBanner() {
   return (
     <section className="mb-24 mt-12 grid grid-cols-1 gap-12 px-8 sm:mt-24 sm:grid-cols-2">
       <div className="flex flex-col gap-4">
-        <h1 className="text-6xl">Generate icons with a click of a button</h1>
+        <h1 className="text-6xl">Generate icons with a click of a button.</h1>
         <p className="text-2xl">
           Use AI to generate icons in seconds instead of paying a designer and
           waisting time. Login to get started!
