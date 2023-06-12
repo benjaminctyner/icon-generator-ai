@@ -10,19 +10,19 @@ import { Input } from "~/component/Input";
 import { api } from "~/utils/api";
 
 const colors = [
-  "blue",
-  "red",
-  "pink",
-  "green",
-  "orange",
-  "yellow",
-  "white",
-  "black",
+  "Blue",
+  "Red",
+  "Pink",
+  "Green",
+  "Orange",
+  "Yellow",
+  "White",
+  "Black",
 ];
 
-const shapes = ["square", "circle", "rounded"];
+const shapes = ["Square", "Circle", "Rounded"];
 
-const styles = ["claymorphic", "3d rendered", "pixelated", "illustrated"];
+const styles = ["Claymorphic", "3D Rendered", "Pixelated", "Illustrated"];
 
 const GeneratePage: NextPage = () => {
   const [form, setForm] = useState({
@@ -76,7 +76,7 @@ const GeneratePage: NextPage = () => {
         </p>
         <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
           <h2 className="text-xl">
-            1. Describe what your want your icon to look like.
+            1. Describe what you would like your icons to look like.
           </h2>
           <FormGroup className="mb-12">
             <label>Prompt</label>
