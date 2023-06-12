@@ -14,11 +14,11 @@ const CommunityPage: NextPage = () => {
       <Head>
         <title>Community Icons</title>
         <meta
-          name="description"
+          name="Community Icons"
           content="
         Community Icons"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon-logo.png" />
       </Head>
       <main className="container mx-auto mt-24 flex min-h-screen flex-col gap-4 px-8">
         <h1 className="text-4xl">Community Icons</h1>
