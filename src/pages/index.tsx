@@ -37,7 +37,7 @@ const HomePage: NextPage = () => {
       <Head>
         <title>AI Icon Generator</title>
         <meta name="AI Icon Generator App" content="AI Icon Generator App" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon-logo.png" />
       </Head>
       <main className="container mx-auto flex min-h-screen flex-col">
         <HeroBanner />
