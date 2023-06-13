@@ -17,7 +17,7 @@ function HeroBanner() {
           waisting time. Login to get started!
         </p>
         <PrimaryLinkButton href="/generate" className="self-start">
-          Generated your Icons
+          Generate your icon
         </PrimaryLinkButton>
       </div>
       <Image
