@@ -14,10 +14,10 @@ function HeroBanner() {
         <h1 className="text-6xl">Generate icons with a click of a button.</h1>
         <p className="text-2xl">
           Use AI to generate icons in seconds instead of paying a designer and
-          wasting time. Login to get started!
+          wasting time. Sign in to get started!
         </p>
         <PrimaryLinkButton href="/generate" className="self-start">
-          Generate your icons
+          Generate Your Icons
         </PrimaryLinkButton>
       </div>
       <Image
