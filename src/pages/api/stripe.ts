@@ -38,23 +38,23 @@ export const config = {
 // app.listen(4242, () => console.log('Running on port 4242'));
 
 const webhook = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("webhook started");
+  // console.log("webhook started");
   if (req.method === "POST") {
-    console.log("webhook post started");
+    // console.log("webhook post started");
     const buf = await buffer(req);
     const sig = req.headers["stripe-signature"] as string;
 
     let event;
 
     try {
-      console.log("start event const");
+      // console.log("start event const");
       event = stripe.webhooks.constructEvent(
         buf,
         sig,
         process.env.STRIPE_WEB_HOOK_SECRET ?? "error"
       );
     } catch (err) {
-      console.log("an error occured");
+      // console.log("an error occured");
       let message = "Unknown Error";
       if (err instanceof Error) message = err.message;
       res.status(400).send(`Webhook Error: ${message}`);
@@ -65,7 +65,7 @@ const webhook = async (req: NextApiRequest, res: NextApiResponse) => {
 
     switch (event.type) {
       case "checkout.session.completed":
-        console.log("completed event");
+        // console.log("completed event");
         const completedEvent = event.data.object as {
           id: string;
           metadata: { userId: string };
