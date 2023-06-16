@@ -3,6 +3,7 @@ import { useBuyCredits } from "~/hooks/useBuyCredits";
 import { api } from "~/utils/api";
 import { Button } from "./Button";
 import { PrimaryLink } from "./PrimaryLInk";
+import Image from "next/image";
 
 export function Header() {
   const session = useSession();
@@ -60,13 +61,16 @@ export function Header() {
           )}
           {!isLoggedIn && (
             <li>
-              <Button
+              <Image
+                className="cursor-pointer"
+                src="/google-sign-in.png"
+                height={"100"}
+                width={"200"}
+                alt="Google Sign In"
                 onClick={() => {
                   signIn().catch(console.error);
                 }}
-              >
-                Login
-              </Button>
+              />
             </li>
           )}
         </ul>
