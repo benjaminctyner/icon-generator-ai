@@ -11,8 +11,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "error", {
   apiVersion: "2022-11-15",
 });
 
-// const stripe = require('stripe')('sk_test_51NH65kJNhXDMHHyHmLExwTHCi57SfWGODEZ7vsIoyzCg4SS7auIXqPhgxGwoa2ECPnjmAoAgw5ZOY0AGfXkLMHDM00g6Jywtir');
-
 export const checkoutRouter = createTRPCRouter({
   createCheckout: protectedProcedure.mutation(async ({ ctx }) => {
     return await stripe.checkout.sessions.create({
