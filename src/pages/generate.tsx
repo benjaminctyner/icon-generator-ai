@@ -8,6 +8,7 @@ import { Button } from "~/component/Button";
 import { FormGroup } from "~/component/FormGroup";
 import { Input } from "~/component/Input";
 import { api } from "~/utils/api";
+import { Spinner } from "../component/Spinner";
 
 const colors = [
   "Blue",
@@ -152,19 +153,23 @@ const GeneratePage: NextPage = () => {
               {error}
             </div>
           )}
+          {!generateIcon.isLoading && (
+            <button className=" mx-auto mb-8 mt-0 w-[250px] flex-col items-center justify-center gap-2 rounded bg-blue-400 px-4 py-2  hover:bg-blue-500 disabled:bg-gray-600">
+              Submit
+            </button>
+          )}
 
-          <Button
-            isLoading={generateIcon.isLoading}
-            disabled={generateIcon.isLoading}
-          >
-            Submit
-          </Button>
+          {generateIcon.isLoading && (
+            <div className=" mx-auto mb-8 mt-0  flex-col items-center justify-center ">
+              <Spinner />
+            </div>
+          )}
         </form>
 
         {imagesUrl.length > 0 && (
           <>
             <h2 className="text-xl">Your Icons</h2>
-            <section className="mb-12 grid grid-cols-4 gap-4">
+            <section className="mb-12 grid grid-cols-4  gap-4">
               {imagesUrl.map(({ imageUrl }) => (
                 <Image
                   key={imageUrl}
