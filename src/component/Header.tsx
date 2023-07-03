@@ -16,7 +16,7 @@ export function Header() {
   });
 
   return (
-    <header className="dark:bg-gray-900">
+    <header className="bg-gray-300 dark:bg-gray-900">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <PrimaryLink href="/">Icon Generator</PrimaryLink>
         <ul className="flex gap-4">
