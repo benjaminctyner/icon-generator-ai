@@ -65,7 +65,7 @@ export function Header() {
                 onClick={() => {
                   signIn().catch(console.error);
                 }}
-                className="border-gray-secondary-400/60 text-md hover:bg-vanilla flex w-full items-center border bg-blue-400 bg-white px-5 py-3.5 font-medium text-slate-800 duration-150 hover:bg-blue-500 sm:w-auto sm:text-base"
+                className="border-gray-secondary-400/60 text-md hover:bg-vanilla flex w-full items-center justify-center border  bg-white px-5 py-3.5 font-medium text-slate-800 duration-150 hover:bg-blue-500 sm:w-auto sm:text-base"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ export function Header() {
                     fill="#57A75C"
                   />
                 </svg>
-                Sign in with Google
+                <p className="hidden md:flex">Sign in with Google</p>
               </button>
             </li>
           )}
