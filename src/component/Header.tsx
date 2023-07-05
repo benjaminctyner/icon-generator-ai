@@ -72,7 +72,7 @@ export function Header() {
                   width={21}
                   height={21}
                   viewBox="0 0 21 21"
-                  className="mr-3.5 h-5 w-5"
+                  className="h-5 w-5 md:mr-3.5"
                   fill="none"
                 >
                   <path
