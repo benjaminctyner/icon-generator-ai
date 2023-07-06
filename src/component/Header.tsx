@@ -1,11 +1,14 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import React from "react";
 import { useBuyCredits } from "~/hooks/useBuyCredits";
 import { api } from "~/utils/api";
 import { Button } from "./Button";
 import { PrimaryLink } from "./PrimaryLInk";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export function Header() {
+  const router = useRouter();
   const session = useSession();
   const { buyCredits } = useBuyCredits();
 
@@ -16,13 +19,16 @@ export function Header() {
   });
 
   return (
-    <header className="bg-gray-300 dark:bg-gray-900">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+    <header className=" bg-gray-300 dark:bg-gray-900">
+      <div className="container mx-auto flex h-16  items-center justify-between px-4">
         <PrimaryLink href="/">Icon Generator</PrimaryLink>
         <ul className="flex gap-4">
-          <li>
-            <PrimaryLink href="/generate">Generate</PrimaryLink>
-          </li>
+          {router.pathname !== "/generate" && (
+            <li>
+              <PrimaryLink href="/generate">Generate</PrimaryLink>
+            </li>
+          )}
+
           <li>
             <PrimaryLink href="/community">Community</PrimaryLink>
           </li>
@@ -35,9 +41,7 @@ export function Header() {
         <ul className="flex gap-4">
           {isLoggedIn && (
             <>
-              <div className="flex items-center">
-                Credits remaining {credits.data}
-              </div>
+              <div className="flex items-center">Credits: {credits.data}</div>
               <li>
                 <Button
                   onClick={() => {
